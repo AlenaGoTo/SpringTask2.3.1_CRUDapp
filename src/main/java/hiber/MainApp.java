@@ -15,25 +15,21 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
-      userService.add(new User("User1", "Lastname1", (byte) 22));
-      userService.add(new User("User2", "Lastname2", (byte) 32));
-      userService.add(new User("User3", "Lastname3", (byte) 44));
-      userService.add(new User("User4", "Lastname4", (byte) 18));
-
       //userService.createUsersTable();
-      userService.saveUser("Lous","Black", (byte) 31);
-      userService.saveUser("Mini","Mouse", (byte) 7);
-      userService.getAllUsers();
-      userService.removeUserById(1);
+      //userService.saveUser(new User("User1", "Lastname1", (byte) 22));
+      //userService.saveUser(new User("User2", "Lastname2", (byte) 32));
+      //userService.saveUser(new User("User3", "Lastname3", (byte) 44));
+      userService.saveUser(new User("User4", "Lastname4", (byte) 18));
+      //System.out.println(userService.getUserById(1).toString());
+      //userService.removeUserById(4);
       //userService.getAllUsers();
       //userService.cleanUsersTable();
       //userService.dropUsersTable();
 
-      List<User> users = userService.listUsers();
+      /*List<User> users = userService.getAllUsers();
       for (User user : users) {
          System.out.println(user.toString());
-      }
+      }*/
 
-      context.close();
    }
 }

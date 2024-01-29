@@ -16,26 +16,32 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public void add(User user) {
-      userDao.add(user);
+   public void saveUser(User user) {
+      userDao.saveUser(user);
    }
 
    @Transactional
    @Override
-   public void saveUser(String name, String lastName, byte age) {
-      userDao.saveUser(name, lastName, age);
+   public void removeUserById(long id) {
+      userDao.removeUserById(id);
    }
 
    @Transactional(readOnly = true)
    @Override
-   public List<User> listUsers() {
-      return userDao.listUsers();
+   public List<User> getAllUsers() {
+      return userDao.getAllUsers();
    }
 
    @Transactional
    @Override
-   public List<User> getAllUsers() {
-      return userDao.getAllUsers();
+   public void updateUser(long id, String name, String lastname, byte age) {
+      userDao.updateUser(id, name, lastname, age);
+   }
+
+   @Transactional(readOnly = true)
+   @Override
+   public User getUserById(long id) {
+      return userDao.getUserById(id);
    }
 
    @Transactional
@@ -52,14 +58,7 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public void removeUserById(long id) {
-      userDao.removeUserById(id);
-   }
-
-   @Transactional
-   @Override
    public void cleanUsersTable() {
       userDao.cleanUsersTable();
    }
-
 }

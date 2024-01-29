@@ -5,18 +5,19 @@ import hiber.model.User;
 import java.util.List;
 
 public interface UserDao {
-   void add(User user);
-   List<User> listUsers();
-
-   void createUsersTable();
-
-   void dropUsersTable();
-
-   void saveUser(String name, String lastName, byte age);
+   void saveUser(User user);
 
    void removeUserById(long id);
 
    List<User> getAllUsers();
+
+   void updateUser(long id, String name, String lastname, byte age);
+
+   User getUserById(long id);
+
+   void createUsersTable();
+
+   void dropUsersTable();
 
    void cleanUsersTable();
 

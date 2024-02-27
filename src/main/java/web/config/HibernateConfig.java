@@ -21,7 +21,7 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "web")
-public class AppConfig {
+public class HibernateConfig {
 
    @Autowired
    private Environment env; // представляет окружение, в котором приложение запущено (интерфейс для работы с properties)

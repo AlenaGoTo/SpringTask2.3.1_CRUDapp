@@ -1,6 +1,6 @@
 package web;
 
-import web.config.AppConfig;
+import web.config.HibernateConfig;
 import web.model.User;
 import web.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class MainApp {
    public static void main(String[] args) throws SQLException {
       AnnotationConfigApplicationContext context =
-              new AnnotationConfigApplicationContext(AppConfig.class);
+              new AnnotationConfigApplicationContext(HibernateConfig.class);
 
       UserService userService = context.getBean(UserService.class);
 

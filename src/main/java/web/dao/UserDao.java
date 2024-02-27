@@ -1,6 +1,6 @@
-package hiber.dao;
+package web.dao;
 
-import hiber.model.User;
+import web.model.User;
 
 import java.util.List;
 

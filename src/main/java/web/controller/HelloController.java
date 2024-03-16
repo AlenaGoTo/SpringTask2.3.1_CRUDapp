@@ -32,7 +32,7 @@ public class HelloController {
 	}
 
 	// удаляем юзера на страничке show
-	@DeleteMapping(value = "/{id}")
+	@DeleteMapping("/{id}")
 	public String deleteUser(@PathVariable("id") long id){
 		userService.removeUserById(id);
 		return "redirect:/users";
@@ -50,7 +50,7 @@ public class HelloController {
 	public String editUser(@RequestParam("name") String name,
 						   @RequestParam("lastname") String lastname,
 						   @RequestParam("age") byte age,
-						   @RequestParam("id") long id )
+						   @PathVariable("id") long id )
 	{
 		userService.updateUser(id, name, lastname, age);
 		return "redirect:/users";

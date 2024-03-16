@@ -3,10 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Юзер с удалением?</title>
+    <title>Юзер с удалением</title>
 </head>
 <body>
-    <<div th:text="${user.toString()}"></div>
+    <div th:text="${user.toString()}"></div>
 
     <a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
 

@@ -11,27 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-//@RequestMapping(value = "/users")
+@RequestMapping(value = "/users")
 public class HelloController {
-
-	@GetMapping(value = "/")
-	public String printWelcome(ModelMap model) {
-		List<String> messages = new ArrayList<>();
-		messages.add("Hello!");
-		messages.add("I'm Spring MVC application");
-		messages.add("5.2.0 version by sep'19 ");
-		model.addAttribute("messages", messages);
-		return "index";
-	}
-
 	@Autowired
 	private UserService userService;
 	private User user;
 
 	//страничка со всеми юзерами из БД
-	@GetMapping(value = "/index")
-	public String printUsers(@RequestParam(required=false) Integer count, ModelMap model){
-		model.addAttribute("messages", userService.getAllUsers()); // передача данных в html
+	@GetMapping()
+	public String printUsers(ModelMap model){
+		model.addAttribute("users", userService.getAllUsers()); // передача данных в html
 		return "index";
 	}
 
@@ -43,7 +32,7 @@ public class HelloController {
 	}
 
 	// удаляем юзера на страничке show
-	@DeleteMapping()
+	@DeleteMapping(value = "/{id}")
 	public String deleteUser(@PathVariable("id") long id){
 		userService.removeUserById(id);
 		return "redirect:/users";
@@ -57,7 +46,7 @@ public class HelloController {
 	}
 
 	// Действие по кнопке правки юзера на странице edit
-	@PatchMapping()
+	@PatchMapping("/{id}")
 	public String editUser(@RequestParam("name") String name,
 						   @RequestParam("lastname") String lastname,
 						   @RequestParam("age") byte age,
@@ -74,7 +63,7 @@ public class HelloController {
 	}
 
 	// Действие по кнопке добавления юзера на страничке new
-	@PostMapping()
+	/*@PostMapping()
 	public String addUser(@RequestParam("name") String name,
 						 @RequestParam("lastname") String lastname,
 						 @RequestParam("age") byte age)
@@ -82,6 +71,6 @@ public class HelloController {
 		user = new User(name, lastname, age);
 		userService.saveUser(user);
 		return "redirect:/users";
-	}
+	}*/
 	
 }

@@ -63,14 +63,14 @@ public class HelloController {
 	}
 
 	// Действие по кнопке добавления юзера на страничке new
-	/*@PostMapping()
-	public String addUser(@RequestParam("name") String name,
-						 @RequestParam("lastname") String lastname,
+	@PostMapping()
+	public String addUser(@RequestParam("firstName") String name,
+						 @RequestParam("lastName") String lastname,
 						 @RequestParam("age") byte age)
 	{
 		user = new User(name, lastname, age);
 		userService.saveUser(user);
 		return "redirect:/users";
-	}*/
+	}
 	
 }

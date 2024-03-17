@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping(value = "/users")
 public class HelloController {
@@ -47,8 +44,8 @@ public class HelloController {
 
 	// Действие по кнопке правки юзера на странице edit
 	@PatchMapping("/{id}")
-	public String editUser(@RequestParam("name") String name,
-						   @RequestParam("lastname") String lastname,
+	public String editUser(@RequestParam("firstName") String name,
+						   @RequestParam("lastName") String lastname,
 						   @RequestParam("age") byte age,
 						   @PathVariable("id") long id )
 	{

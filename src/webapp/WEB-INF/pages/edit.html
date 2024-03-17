@@ -8,10 +8,10 @@
 <body>
 <form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
     <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
+    <input type="text" th:field="*{firstName}" id="name"/>
     <br/>
     <label for="lastname">Enter lastname: </label>
-    <input type="text" th:field="*{lastname}" id="lastname"/>
+    <input type="text" th:field="*{lastName}" id="lastname"/>
     <br/>
     <label for="age">Enter age: </label>
     <input type="text" th:field="*{age}" id="age"/>

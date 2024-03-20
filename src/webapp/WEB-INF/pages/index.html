@@ -7,10 +7,6 @@
 </head>
 <body>
     <div>
-        <th:block th:each="msg : ${messages}">
-            <h1 th:text="${msg}"></h1>
-        </th:block>
-
         <th:block th:each="user : ${users}">
             <p><a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.toString()}"></a></p>
         </th:block>

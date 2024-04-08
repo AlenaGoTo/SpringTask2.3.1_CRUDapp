@@ -19,12 +19,12 @@ import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:db.properties")
-@EnableTransactionManagement
+@EnableTransactionManagement // Включает возможность управления транзакциями Spring на основе аннотаций
 @ComponentScan(value = "web")
 public class HibernateConfig {
 
    @Autowired
-   private Environment env; // представляет окружение, в котором приложение запущено (интерфейс для работы с properties)
+   private Environment env; // интерфейс для работы с Property
 
    @Bean
    public DataSource dataSource(){
@@ -49,15 +49,16 @@ public class HibernateConfig {
    // настройка EntityManagerFactory указываем источник данных и свойства JPA
    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
       LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
-      emfb.setPackagesToScan("web.model");
+      emfb.setPackagesToScan("web.model"); // сканирование для поиска Entity
       emfb.setDataSource(dataSource());
-      emfb.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-      emfb.setJpaProperties(hibernateProperties());
+      emfb.setJpaVendorAdapter(new HibernateJpaVendorAdapter()); // поставщик реализации JPA
+      emfb.setJpaProperties(hibernateProperties()); // специфичные для JpaVendor-а свойства
       return emfb;
    }
 
    @Bean
-   // настройка TransactionManager
+   // управление транзакциями (перехватывает методы @Transactional)
+   // можете изменить способ управления транзакциями, просто изменив конфигурацию
    public JpaTransactionManager transactionManager() {
       JpaTransactionManager transactionManager = new JpaTransactionManager();
       transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
@@ -65,8 +66,9 @@ public class HibernateConfig {
    }
 
    @Bean
-   // настройка ExceptionTranslation
-   // чтобы Spring при инициализации контекста приложения осуществил автосвязывание полей бинов с менеджером сущностей
+   // настройка ExceptionTranslation (не обязательна т.к. LocalContainerEntityManagerFactoryBean его реализует)
+   // PersistenceExceptionTranslationPostProcessor используется для преобразования ошибок @Repository
+   // в объекты Spring DataAccessException (не зависимо от поставщика Jpa)
    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
       return new PersistenceExceptionTranslationPostProcessor();
    }

@@ -21,11 +21,11 @@ public class HelloController {
 		return "index";
 	}
 
-	//страничка с одним юзером
+	//страница для правки юзера
 	@GetMapping(value = "/{id}")
 	public String getUser(@PathVariable("id") long id, ModelMap model){
 		model.addAttribute("user", userService.getUserById(id)); // передача данных в html
-		return "show";
+		return "edit";
 	}
 
 	// удаляем юзера на страничке show
@@ -33,13 +33,6 @@ public class HelloController {
 	public String deleteUser(@PathVariable("id") long id){
 		userService.removeUserById(id);
 		return "redirect:/users";
-	}
-
-	//страница для правки юзера
-	@GetMapping(value = "/{id}/edit")
-	public String editUser(@PathVariable("id") long id, ModelMap model){
-		model.addAttribute("user", userService.getUserById(id)); // передача данных в html
-		return "edit";
 	}
 
 	// Действие по кнопке правки юзера на странице edit

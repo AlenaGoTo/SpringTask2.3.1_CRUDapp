@@ -20,7 +20,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     }
 
     // Вопрос? Если же у нас только один класс конфигурации, то его нужно передать в метод getRootConfigClasses(),
-    // а getServletConfigClasses() должен возвращать null.
+    // а getServletConfigClasses() должен возвращать null. Ответ: тут без разницы
     // Добавление конфигурации контекста приложения сервлета, который будет предоставлен DispatcherServlet.
     // в которой инициализируем ViewResolver, для корректного отображения jsp.
     @Override
